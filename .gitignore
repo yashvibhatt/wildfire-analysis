@@ -1,0 +1,67 @@
+# ─── macOS ────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+__MACOSX/
+ehthumbs.db
+Thumbs.db
+
+# ─── R session artefacts ──────────────────────────────────────────────────────
+.Rhistory
+.RData
+.Rapp.history
+.Rproj.user/
+*.Rproj
+
+# ─── R temporary / cache files ────────────────────────────────────────────────
+*.Rout
+*.rdb
+*.rdx
+/cache/
+
+# ─── knitr / rmarkdown build artefacts ───────────────────────────────────────
+*_files/
+*_cache/
+# Ignore only LaTeX compiler output files, NOT hand-authored .tex sources.
+# "*.tex" would silently exclude float-setup.tex, so we target specific
+# file extensions that are only ever compiler-generated:
+*.log
+*.aux
+*.out
+*.toc
+*.lof
+*.lot
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+# The knitted .tex intermediate (named after the Rmd) is also generated:
+Group4-_Project_report_Final.tex
+
+# ─── Large or sensitive data files ───────────────────────────────────────────
+data/*.csv
+data/*.xlsx
+data/*.xls
+data/*.parquet
+data/*.feather
+data/*.zip
+data/*.gz
+data/*.tar
+
+# ─── Saved model objects (large binaries) ────────────────────────────────────
+models/*.rds
+models/*.RData
+models/*.pkl
+
+# ─── Generated / rendered outputs ────────────────────────────────────────────
+reports/*.pdf
+reports/*.html
+reports/*.docx
+
+# ─── Misc temp & editor files ─────────────────────────────────────────────────
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
