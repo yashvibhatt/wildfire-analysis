@@ -35,9 +35,9 @@ Place each file in the `data/` folder before running any script.
 
 | File | Required by | Where to obtain |
 |---|---|---|
-| `fires_with_max_weather_corrected.csv` | All RQ2 scripts, RQ3, RQ4, Rmd | Provided by course / team-engineered from CALFIRE + weather APIs |
-| `CA_Weather_Fire_Dataset_1984-2025.csv` | `research-question-4.R`, Rmd (RQ1) | [Zenodo](https://zenodo.org) — daily CA weather × fire dataset |
-| `CA_Weather_Fire_Dataset_2008_2023_with_duration.csv` | Rmd (RQ3 SVM duration analysis) | Team-engineered from CALFIRE perimeters |
+| `fires_with_max_weather_corrected.csv` | All RQ2 scripts, RQ3, RQ4, Rmd | **Not publicly available.** Team-engineered from CALFIRE perimeters + weather APIs. Contact the course instructor or project team to obtain this file. |
+| `CA_Weather_Fire_Dataset_1984-2025.csv` | `research-question-4.R`, Rmd (RQ1) | **Publicly available on Zenodo.** URL: <!-- TODO: insert exact Zenodo record URL here --> |
+| `CA_Weather_Fire_Dataset_2008_2023_with_duration.csv` | Rmd (RQ3 SVM duration analysis) | **Not publicly available.** Team-engineered from CALFIRE perimeters with duration calculations applied. Contact the course instructor or project team. |
 
 **Engineering steps already applied to `fires_with_max_weather_corrected.csv`:**
 - `FIRE_DURATION` calculated from alarm and containment dates.
@@ -237,37 +237,37 @@ This repository is **substantially reproducible** subject to the following condi
 ## How to Run With the Current Files
 
 ```r
-# ── Step 1: Install all packages (run once) ──────────────────────────────────
+# ── Step 1: Install TinyTeX for PDF rendering (run once, if not installed) ───
+tinytex::install_tinytex()   # skip if you already have a LaTeX distribution
+
+# ── Step 2: Install all R packages (run once) ────────────────────────────────
 source("packages.R")
 
-# ── Step 2: Place raw datasets in data/ ──────────────────────────────────────
-# data/fires_with_max_weather_corrected.csv
-# data/CA_Weather_Fire_Dataset_1984-2025.csv
-# data/CA_Weather_Fire_Dataset_2008_2023_with_duration.csv
-
-# ── Step 3: Update paths in each script ──────────────────────────────────────
-# Replace every absolute read.csv / read_csv / readRDS / saveRDS path with
-# the relative equivalent shown in the path-replacement table in this README.
-# Scripts in src/ should use "../data/..." and "../models/...".
-# The Rmd in reports/ should use "../data/...", "../figures/...", etc.
+# ── Step 3: Place raw datasets in data/ ──────────────────────────────────────
+# data/fires_with_max_weather_corrected.csv             (contact project team)
+# data/CA_Weather_Fire_Dataset_1984-2025.csv            (download from Zenodo)
+# data/CA_Weather_Fire_Dataset_2008_2023_with_duration.csv  (contact project team)
 
 # ── Step 4 (optional): Re-run individual analysis scripts ────────────────────
-source("src/Seasonal_trends.R")
-source("src/NaturalvsHumanMade_Piechart.R")
-source("src/Pie_Chart_Classification_by_class.R")
-source("src/Method1_Final_model.R")    # slow — re-trains RF + XGBoost
-source("src/Method2_Complete.R")       # re-trains SVM, writes prediction CSV
-source("src/research-question-4.R")   # slow — re-trains tuned Ranger RF
+# All scripts in src/ use paths relative to src/ as the working directory.
+# Open each script in RStudio and run it from there, OR set your working
+# directory to src/ before sourcing:
+setwd("src")
+source("Seasonal_trends.R")
+source("NaturalvsHumanMade_Piechart.R")
+source("Pie_Chart_Classification_by_class.R")
+source("Method1_Final_model.R")    # slow — re-trains RF + XGBoost
+source("Method2_Complete.R")       # re-trains SVM, writes prediction CSV
+source("research-question-4.R")   # slow — re-trains tuned Ranger RF
+setwd("..")                        # return to repo root when done
 
 # ── Step 5: Render the full report ───────────────────────────────────────────
-# Set working directory to reports/ before knitting, or use output_dir:
+# Run from the repo root. knitr resolves all paths relative to reports/.
 rmarkdown::render(
   "reports/Group4_Project_report_Final.Rmd",
   output_format = "pdf_document",
   output_dir    = "reports/"
 )
-# Requires a LaTeX distribution. Install via:
-# tinytex::install_tinytex()
 ```
 
 ---
@@ -288,6 +288,7 @@ Install everything in one step: `source("packages.R")`
 | `caret` | Model training, cross-validation, metrics |
 | `e1071` | SVM (RBF kernel) |
 | `ranger` · `randomForest` | Random Forest (fast training + importance) |
+| `xgboost` | Gradient boosting (RQ2 Method 1 ensemble) |
 | `pROC` | ROC / AUC computation |
 | `dbscan` | DBSCAN / HDBSCAN geographic clustering |
 | `knitr` · `tinytex` | Report rendering |

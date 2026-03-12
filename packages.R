@@ -27,6 +27,7 @@ pkgs <- c(
   "e1071",        # SVM
   "ranger",       # Fast Random Forest
   "randomForest", # Feature importance compatibility
+  "xgboost",      # Gradient boosting (RQ2 Method 1)
   "pROC",         # ROC / AUC
   "dbscan",       # Density-based clustering
 

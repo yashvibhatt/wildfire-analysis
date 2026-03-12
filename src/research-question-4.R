@@ -86,7 +86,7 @@ print("Helper functions defined.")
 # -------------------------------------------------------------------------
 data_path     <- "../data/CA_Weather_Fire_Dataset_1984-2025.csv"
 split_year    <- 2015
-uetooth_length_rf <- 10
+tuneLength_rf <- 10
 cv_repeats    <- 2
 cv_number     <- 5
 
