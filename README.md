@@ -36,7 +36,7 @@ Place each file in the `data/` folder before running any script.
 | File | Required by | Where to obtain |
 |---|---|---|
 | `fires_with_max_weather_corrected.csv` | All RQ2 scripts, RQ3, RQ4, Rmd | **Not publicly available.** Team-engineered from CALFIRE perimeters + weather APIs. Contact the course instructor or project team to obtain this file. |
-| `CA_Weather_Fire_Dataset_1984-2025.csv` | `research-question-4.R`, Rmd (RQ1) | **Publicly available on Zenodo.** URL: <!-- TODO: insert exact Zenodo record URL here --> |
+| `CA_Weather_Fire_Dataset_1984-2025.csv` | `research-question-4.R`, Rmd (RQ1) | **Publicly available on Zenodo.** [https://zenodo.org/records/14712845](https://zenodo.org/records/14712845) |
 | `CA_Weather_Fire_Dataset_2008_2023_with_duration.csv` | Rmd (RQ3 SVM duration analysis) | **Not publicly available.** Team-engineered from CALFIRE perimeters with duration calculations applied. Contact the course instructor or project team. |
 
 **Engineering steps already applied to `fires_with_max_weather_corrected.csv`:**
